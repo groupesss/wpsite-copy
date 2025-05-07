@@ -1,0 +1,2 @@
+# wpsite-copy
+wpsite-test
